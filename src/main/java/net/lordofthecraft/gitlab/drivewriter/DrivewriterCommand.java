@@ -1,5 +1,6 @@
 package net.lordofthecraft.gitlab.drivewriter;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,19 +23,19 @@ public class DrivewriterCommand implements CommandExecutor {
             }
 
             if (args.length > 1){
-                errorToFewArgs();
+                errorToManyArgs();
                 helpMenu();
                 return true;
             }
 
             if (args.length == 1){
                 String inputurl = args[0];
-                BookComposer composer =new BookComposer(inputurl,(Player) sender);
-                if (!composer.isSafe()) return true;
-
-
-
-
+                BookComposer composer = new BookComposer(inputurl,(Player) sender);
+                if (!composer.isSafe()){
+                    Bukkit.getServer().broadcastMessage("NOT SAFE EXITING");
+                    return true;
+                }
+                composer.bookCompose();
                 return true;
             }
         }
@@ -42,19 +43,19 @@ public class DrivewriterCommand implements CommandExecutor {
     }
 
     private void errorToFewArgs(){
-
+        Bukkit.getServer().broadcastMessage("To few Args placeholder");
     }
 
     private void errorToManyArgs(){
-
+        Bukkit.getServer().broadcastMessage("To many args placeholder");
     }
 
     private void errorIsNotPlayer(){
-
+        Bukkit.getServer().broadcastMessage("NOT Player placeholder");
     }
 
     private void helpMenu(){
-
+        Bukkit.getServer().broadcastMessage("HelpMenu Placeholder");
     }
 
     private boolean isPlayer(CommandSender sender){

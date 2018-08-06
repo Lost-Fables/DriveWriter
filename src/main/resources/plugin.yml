@@ -4,3 +4,9 @@ main: net.lordofthecraft.gitlab.drivewriter.Drivewriter
 authors: [SeventhCircle]
 description: A plugin for converting Gdocs into MC books
 website: https://www.lordofthecraft.net
+
+commands:
+  drivewriter:
+    description: convert gdocs into mc books
+  dw:
+    description: convert gdocs into mc books

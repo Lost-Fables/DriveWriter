@@ -1,7 +1,10 @@
 package net.lordofthecraft.gitlab.drivewriter;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,12 +13,13 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class BookComposer {
     private Player player;
     private URL url;
     private boolean safe;
-    private ItemStack composedbook;
+
 
     BookComposer(String inputurl, Player player){
         safe = true;
@@ -32,8 +36,23 @@ public class BookComposer {
         return safe;
     }
 
-    private ItemStack bookCompose(){
+    public void bookCompose(){
+        if (player.getInventory().getItemInMainHand().getType() == Material.BOOK_AND_QUILL){
+            String text = textGetter(documentGetter(url));
 
+            player.getInventory().getItemInMainHand().setAmount(0);
+
+            ItemStack book = new ItemStack(Material.BOOK_AND_QUILL);
+            BookMeta bookMeta = (BookMeta) book.getItemMeta();
+            PageHandler pageHandler = new PageHandler(245);
+            pageHandler.text(text);
+            List<String> pages = pageHandler.toList();
+            bookMeta.setPages(pages);
+            book.setItemMeta(bookMeta);
+
+            player.getInventory().setItemInMainHand(book);
+
+        }
     }
 
     private Document documentGetter(URL url){
@@ -41,18 +60,19 @@ public class BookComposer {
         try {
             document = Jsoup.connect(url.toString()).get();
         }catch (IOException error){
-            player.sendMessage("Error, IO issue getting the document from the provdied URL");
+            player.sendMessage("Error, IO issue getting the document from the provided URL");
             safe = false;
         }
         return document;
     }
 
     private String textGetter(Document document){
-        String output;
+        StringBuilder stringBuilder = new StringBuilder();
 
         Elements text = document.select("p");
         for (Element element : text){
-            element.text().toString();
+            stringBuilder.append(element.text());
         }
+        return stringBuilder.toString();
     }
 }

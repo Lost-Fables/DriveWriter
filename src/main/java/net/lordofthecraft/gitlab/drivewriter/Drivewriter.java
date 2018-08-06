@@ -6,7 +6,7 @@ public final class Drivewriter extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        registerCommands();
 
     }
 
@@ -15,7 +15,8 @@ public final class Drivewriter extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    private void registerExecutors(){
-
+    private void registerCommands(){
+        getCommand("DriveWriter").setExecutor(new DrivewriterCommand());
+        getCommand("Dw").setExecutor(new DrivewriterCommand());
     }
 }
