@@ -10,3 +10,6 @@ commands:
     description: convert gdocs into mc books
   dw:
     description: convert gdocs into mc books
+permissions:
+  drivewriter.use:
+    description: Gives the ability to use drivewriter
