@@ -1,6 +1,7 @@
 package net.lordofthecraft.gitlab.drivewriter;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,19 +13,21 @@ public class DrivewriterCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         if (label.equalsIgnoreCase("DW") || label.equalsIgnoreCase("DriveWriter")){
             if (!isPlayer(sender)){
-                errorIsNotPlayer();
+                errorIsNotPlayer(sender);
                 return true;
             }
 
+            Player player = (Player) sender;
+
             if (args.length < 1){
-                errorToFewArgs();
-                helpMenu();
+                errorToFewArgs(player);
+                helpMenu(player);
                 return true;
             }
 
             if (args.length > 1){
-                errorToManyArgs();
-                helpMenu();
+                errorToManyArgs(player);
+                helpMenu(player);
                 return true;
             }
 
@@ -42,20 +45,21 @@ public class DrivewriterCommand implements CommandExecutor {
         return true;
     }
 
-    private void errorToFewArgs(){
-        Bukkit.getServer().broadcastMessage("To few Args placeholder");
+    private void errorToFewArgs(Player player){
+        player.sendMessage(ChatColor.RED + "Entered to few arguments!");
     }
 
-    private void errorToManyArgs(){
-        Bukkit.getServer().broadcastMessage("To many args placeholder");
+    private void errorToManyArgs(Player player){
+        player.sendMessage(ChatColor.RED + "To many arguments entered!");
     }
 
-    private void errorIsNotPlayer(){
-        Bukkit.getServer().broadcastMessage("NOT Player placeholder");
+    private void errorIsNotPlayer(CommandSender sender){
+        sender.sendMessage(ChatColor.RED + "Only players can use this command!");
     }
 
-    private void helpMenu(){
-        Bukkit.getServer().broadcastMessage("HelpMenu Placeholder");
+    private void helpMenu(Player player){
+        player.sendMessage(ChatColor.GOLD + "To use drive writer you need to first publish your Document. \n" +
+                "Go to File, then publish to web, and final take the publish to web link and pass that into drive writer!");
     }
 
     private boolean isPlayer(CommandSender sender){
