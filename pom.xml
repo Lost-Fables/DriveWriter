@@ -6,10 +6,10 @@
 
     <groupId>net.lordofthecraft.gitlab</groupId>
     <artifactId>drivewriter</artifactId>
-    <version>0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Drivewriter</name>
+    <name>DriveWriter</name>
 
     <description>A plugin for converting Gdocs into MC books</description>
     <properties>
@@ -19,6 +19,7 @@
 
     <build>
         <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -28,22 +29,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <minimizeJar>true</minimizeJar>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
         <resources>
@@ -58,14 +43,6 @@
         <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>mvnrepository</id>
-            <url>https://mvnrepository.com/artifact/</url>
         </repository>
     </repositories>
 

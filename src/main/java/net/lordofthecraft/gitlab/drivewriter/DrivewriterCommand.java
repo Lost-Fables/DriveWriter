@@ -11,7 +11,7 @@ public class DrivewriterCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
-        if (label.equalsIgnoreCase("DW") || label.equalsIgnoreCase("DriveWriter")){
+        if (command.getName().equalsIgnoreCase("drivewriter")){
             if(sender.hasPermission("drivewriter.use")) {
                 if (!isPlayer(sender)) {
                     errorIsNotPlayer(sender);
@@ -32,16 +32,14 @@ public class DrivewriterCommand implements CommandExecutor {
                     return true;
                 }
 
-                if (args.length == 1) {
-                    String inputurl = args[0];
-                    BookComposer composer = new BookComposer(inputurl, (Player) sender);
-                    if (!composer.isSafe()) {
-                        Bukkit.getServer().broadcastMessage("NOT SAFE EXITING");
-                        return true;
-                    }
-                    composer.bookCompose();
+                String inputurl = args[0];
+                BookComposer composer = new BookComposer(inputurl, (Player) sender);
+                if (!composer.isSafe()) {
+                    Bukkit.getServer().broadcastMessage("NOT SAFE EXITING");
                     return true;
                 }
+                composer.bookCompose();
+                return true;
             }
         }
         return true;

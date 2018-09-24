@@ -17,6 +17,5 @@ public final class Drivewriter extends JavaPlugin {
 
     private void registerCommands(){
         getCommand("DriveWriter").setExecutor(new DrivewriterCommand());
-        getCommand("Dw").setExecutor(new DrivewriterCommand());
     }
 }

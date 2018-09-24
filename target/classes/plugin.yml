@@ -1,5 +1,5 @@
 name: Drivewriter
-version: ${project.version}
+version: 1.0.0
 main: net.lordofthecraft.gitlab.drivewriter.Drivewriter
 authors: [SeventhCircle]
 description: A plugin for converting Gdocs into MC books
@@ -8,8 +8,8 @@ website: https://www.lordofthecraft.net
 commands:
   drivewriter:
     description: convert gdocs into mc books
-    aliases: dw
-
+  dw:
+    description: convert gdocs into mc books
 permissions:
   drivewriter.use:
     description: Gives the ability to use drivewriter

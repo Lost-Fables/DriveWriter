@@ -1,0 +1,4 @@
+net\lordofthecraft\gitlab\drivewriter\PageHandler.class
+net\lordofthecraft\gitlab\drivewriter\DrivewriterCommand.class
+net\lordofthecraft\gitlab\drivewriter\Drivewriter.class
+net\lordofthecraft\gitlab\drivewriter\BookComposer.class
