@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -25,7 +27,7 @@ public class BookComposer {
 
         try {url = new URL(inputurl);}
         catch (MalformedURLException error){
-           player.sendMessage("Error, BAD url please try again");
+           player.sendMessage(ChatColor.RED + "Error, BAD url please try again");
            safe = false;
         }
     }
