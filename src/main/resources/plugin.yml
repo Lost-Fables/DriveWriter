@@ -9,7 +9,4 @@ commands:
   drivewriter:
     description: convert gdocs into mc books
     aliases: dw
-
-permissions:
-  drivewriter.use:
-    description: Gives the ability to use drivewriter
+    permission: drivewriter.use
