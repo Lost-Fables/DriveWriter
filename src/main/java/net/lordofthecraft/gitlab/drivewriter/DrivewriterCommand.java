@@ -40,7 +40,7 @@ public class DrivewriterCommand implements CommandExecutor {
                 }
                 composer.bookCompose();
                 return true;
-            }
+            } else {sender.sendMessage(ChatColor.RED + "Error: you lack permission");}
         }
         return true;
     }
