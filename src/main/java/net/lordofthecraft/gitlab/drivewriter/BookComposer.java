@@ -37,12 +37,12 @@ public class BookComposer {
     }
 
     public void bookCompose(){
-        if (player.getInventory().getItemInMainHand().getType() == Material.BOOK_AND_QUILL){
+        if (player.getInventory().getItemInMainHand().getType() == Material.WRITABLE_BOOK){
             String text = textGetter(documentGetter(url));
 
             player.getInventory().getItemInMainHand().setAmount(0);
 
-            ItemStack book = new ItemStack(Material.BOOK_AND_QUILL);
+            ItemStack book = new ItemStack(Material.WRITABLE_BOOK);
             BookMeta bookMeta = (BookMeta) book.getItemMeta();
             PageHandler pageHandler = new PageHandler(245);
             pageHandler.text(text);
